@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "ImageSlideshow",
     platforms: [
-        .iOS(.v10),
+        .iOS(.v12),
     ],
     products: [
         .library(
@@ -22,7 +22,8 @@ let package = Package(
             targets: ["ImageSlideshowKingfisher"])
     ],
     dependencies: [
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "5.8.0"),
+        // Allow Kingfisher 5.x through 8.x to support a wider range of host projects
+        .package(url: "https://github.com/onevcat/Kingfisher.git", "5.8.0"..<"9.0.0"),
         .package(url: "https://github.com/Alamofire/AlamofireImage.git", from: "4.0.0"),
         .package(url: "https://github.com/SDWebImage/SDWebImage.git", from: "5.1.0")
     ],
@@ -42,11 +43,11 @@ let package = Package(
                 "Classes/Core/SwiftSupport.swift",
                 "Classes/Core/UIImage+AspectFit.swift",
                 "Classes/Core/UIImageView+Tools.swift",
-                "Classes/Core/ZoomAnimatedTransitioning.swift",
+                "Classes/Core/ZoomAnimatedTransitioning.swift"
             ],
             resources: [
                 .copy("Assets/ic_cross_white@2x.png"),
-                .copy("Assets/ic_cross_white@3x.png"),
+                .copy("Assets/ic_cross_white@3x.png")
             ]),
         .target(
             name: "ImageSlideshowAlamofire",
